@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Anniversary 💕</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&family=Baloo+2&display=swap');
+
+body {
+  margin:0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffd6e8, #ffe6cc, #e0c3fc);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #333;
+  text-align: center;
+  padding: 40px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Keep all content above floating hearts */
+body * {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.2em;
+  color: #ff5fa2;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(255,105,180,0.3);
+}
+
+.card {
+  background: rgba(255,255,255,0.6);
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  font-size: 1.2em;
+  color:#444;
+}
+
+button {
+  padding: 12px 25px;
+  border:none;
+  border-radius: 30px;
+  background: #ff5fa2;
+  color:white;
+  font-size: 1em;
+  font-family: 'Poppins', sans-serif;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover {
+  background: linear-gradient(90deg, #ff5fa2, #ffb347);
+  transform: scale(1.05);
+}
+
+#popupModal {
+  display:none;
+  position:fixed;
+  z-index:10;
+  left:0;top:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+}
+
+#popupModal.show { display:flex; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+#modalContent {
+  background: rgba(255,255,255,0.9);
+  padding:40px;
+  border-radius:25px;
+  max-width:800px;
+  max-height:80vh;
+  overflow-y:auto;
+  font-family: 'Baloo 2', sans-serif;
+  font-size:1.4em;
+  line-height:1.8;
+  position:relative;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25), 0 0 20px rgba(255,192,203,0.6);
+  animation: zoomIn 0.4s;
+  backdrop-filter: blur(15px);
+}
+
+#modalContent::-webkit-scrollbar { width: 8px; }
+#modalContent::-webkit-scrollbar-thumb {
+  background: #ffb6d9;
+  border-radius: 10px;
+}
+
+@keyframes zoomIn {
+  from {transform:scale(0.7); opacity:0;}
+  to {transform:scale(1); opacity:1;}
+}
+
+#closeModal {
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  background: linear-gradient(90deg, #ff5fa2, #ffb347);
+  color:white;
+  font-size:1.1em;
+  font-weight:bold;
+  border-radius:25px;
+  cursor:pointer;
+  font-family: 'Poppins', sans-serif;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+#musicBtn {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  padding:15px;
+  border-radius:50%;
+  border:none;
+  background:#fff;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  cursor:pointer;
+  font-size:1.2em;
+  z-index:20;
+}
+
+/* Memory wall */
+.memory-wall {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.memory-wall img {
+  width: 180px;
+  height: auto;
+  border: 8px solid white;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  transform: rotate(var(--tilt));
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.memory-wall img:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255,105,180,0.6);
+}
+
+/* Sparkle effect for couple photos */
+.memory-wall img.couple {
+  position: relative;
+}
+.memory-wall img.couple::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+  opacity: 0;
+  border-radius: 20px;
+  animation: sparkle 3s infinite ease-in-out;
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  color: #ff5fa2;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.7;
+  z-index: 0; /* stays behind everything */
+  pointer-events: none;
+}
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity:0.8; }
+  100% { transform: translateY(-120vh) scale(1.5); opacity:0; }
+}
+</style>
+</head>
+<body>
+  <h1>Happy Anniversary Baby! 💖</h1>
+  <div class="card">
+    <p id="sneakPeek"></p>
+    <button id="readMoreBtn">Read More 💌</button>
+  </div>
+
+  <!-- Music -->
+  <audio id="bgMusic">
+    <source src="https://archive.org/download/edshrn/06%20Ed%20Sheeran%20Photograph.mp3" type="audio/mpeg">
+  </audio>
+  <button id="musicBtn">🎵</button>
+
+  <!-- Modal -->
+  <div id="popupModal">
+    <div id="modalContent">
+      <p id="modalText"></p>
+      <!-- Memory wall -->
+      <div class="memory-wall">
+        <!-- Couple photos (sparkle enabled) -->
+        <img src="us.png.png" class="couple" style="--tilt:-5deg;">
+        <img src="178e11f0-0411-4e40-bdb7-080225a83961.jpg" class="couple" style="--tilt:4deg;">
+        <img src="7325c02c-ad19-4d61-b3a7-92a702b2c456.jpg" class="couple" style="--tilt:-7deg;">
+        <img src="b1d34b72-ed6b-464f-82c7-e6ccc82df9b9.jpg" class="couple" style="--tilt:6deg;">
+       
+      <button id="closeModal">Close & Keep Forever 💖</button>
+    </div>
+  </div>
+
+<script>
+const sneakPeek = `Happy anniversary Mehr ❤️ I can’t believe it’s been a year we are together, and let’s go on forever and forever.
+I love our endless gossips and how silly-villy we are together. No matter what we talk about, you always make me laugh and feel lighter.
+No matter whatever things will be between us, cause at the end of the day it’s you and me.`;
+
+const fullLetter = `My Love
+
+I am writing this with my heart wide open because I do not want to hide a single thing from you. You mean too much to me for me to hold back. I know yesterday was hard and I know you felt like maybe I deserve better but please hear me when I say this I DO NOT WANT BETTER I do not need better I only WANT YOU.
+
+When I look at you I see the person I fell in love with and the person I will keep falling for again and again. I do not see someone who is not enough. I see someone who makes my make me brighter, someone whose smile can change my entire day, someone whose love has made this past year the most beautiful part of my life.
+
+Yes ik we have had moments where things felt heavy and maybe even close to breaking, but love is not about being perfect. Love is about staying even when it feels hard. It is about choosing each other every single day no matter what and that is what I promise to do with you. I promise to hold your hand in the storms. I promise to stand beside you when you doubt yourself. I promise to remind you that you are my heart and my forever and I want you to promise me the very same.
+
+As Alfred Lord Tennyson once wrote: If I had a flower for every time I thought of you I could walk through my garden forever. That is how endless my love for you feels and no moment of doubt, no fear, no struggle will ever change that.
+
+So here we are, one year together and I feel more sure than ever: you are my home, you are my safe place, you are my always. And no matter what comes between us I know we will find our way back to each other, because we are bound together in a way nothing can undo.
+
+Happy first anniversary my love. This is only the beginning and I cannot wait to keep choosing you every single day for the rest of my life.
+
+Always yours,
+buddhu swaram murugan pillai`;
+
+document.getElementById("sneakPeek").innerText = sneakPeek;
+
+// Modal
+const modal = document.getElementById("popupModal");
+const modalText = document.getElementById("modalText");
+
+document.getElementById("readMoreBtn").onclick = ()=>{
+  modal.classList.add("show");
+  modalText.innerText = fullLetter;
+};
+document.getElementById("closeModal").onclick = ()=>{
+  modal.classList.remove("show");
+};
+
+// Music toggle
+const audio = document.getElementById("bgMusic");
+let isPlaying=false;
+document.getElementById("musicBtn").onclick = ()=>{
+  if(isPlaying){ audio.pause(); isPlaying=false; }
+  else { audio.play(); isPlaying=true; }
+};
+
+// Floating hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerText = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (20 + Math.random()*20) + "px";
+  heart.style.animationDuration = (4 + Math.random()*3) + "s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(), 7000);
+}
+setInterval(createHeart, 600);
+</script>
+</body>
+</html>
